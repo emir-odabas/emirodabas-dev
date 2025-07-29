@@ -1,58 +1,134 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Emir Odabaş</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emir Odabaş | Kişisel Web Sitesi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+<style>
+    /* Canvas tam ekran arka plan için */
+    #matrix-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1; /* Arka planda */
+      background: #121212;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-content">
-    <a href="#" class="home-link" aria-label="Anasayfa">
-      <svg class="home-icon" viewBox="0 0 24 24" fill="#82aaff" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 12l9-9 9 9h-3v9h-12v-9h-3z"/></svg>
-      <span class="site-name">EMIR ODABAS</span>
-    </a>
+<canvas id="matrix-canvas"></canvas>
 
-    <nav class="nav-menu">
-      <button class="nav-btn active" data-target="about">About Me</button>
-      <a href="https://github.com/emirodabas" target="_blank" rel="noopener" class="nav-btn">GitHub</a>
-      <a href="https://linkedin.com/in/emirodabas" target="_blank" rel="noopener" class="nav-btn">LinkedIn</a>
-      <a href="mailto:emir_odabas@outlook.com" class="nav-btn">Email</a>
-      <div class="spotlight"></div>
+<header>
+  <div class="container">
+    <h1 class="logo">Emir Odabaş</h1>
+    <nav>
+      <ul>
+        <li><a href="#about" class="interactive">Hakkımda</a></li>
+        <li><a href="#experience" class="interactive">Deneyim</a></li>
+        <li><a href="#education" class="interactive">Eğitim</a></li>
+        <li><a href="#projects" class="interactive">Projeler</a></li>
+        <li><a href="#contact" class="interactive">İletişim</a></li>
+      </ul>
     </nav>
   </div>
 </header>
 
-<main>
-  <section id="about" class="section" data-aos="fade-up">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>
-        Bilgisayar programcılığı ve yönetim bilişim sistemleri alanlarında eğitim almış, oyun geliştirme tutkusu olan bir yazılım geliştiriciyim. C# dilinde orta düzeyde tecrübeye ve Unity üzerinde proje geliştirme deneyimine sahibim. Öğrenmeye açık, çözüm odaklı ve takım çalışmasına yatkınım.
-      </p>
-    </div>
-  </section>
+<section class="hero section" data-aos="fade-up" data-aos-duration="1000">
+  <div class="container hero-content interactive">
+    <h2>Yazılım Geliştirici & Oyun Tutkunu</h2>
+    <p>Unity ve C# ile projeler geliştiren, yaratıcı çözümler üreten bir yazılım geliştirici adayıyım.</p>
+  </div>
+</section>
 
-  <section id="projects" class="section" data-aos="fade-up">
-    <div class="container">
-      <h2>Projects</h2>
-      <p>Proje içerikleri yakında eklenecek.</p>
+<section id="about" class="section" data-aos="fade-right" data-aos-duration="1000">
+  <div class="container">
+    <h2>Hakkımda</h2>
+    <p>Bilgisayar programcılığı ve yönetim bilişim sistemleri alanlarında eğitim almış, oyun geliştirme tutkusu olan bir yazılım geliştiriciyim. C# dilinde orta düzeyde tecrübeye ve Unity üzerinde proje geliştirme deneyimine sahibim. Öğrenmeye açık, çözüm odaklı ve takım çalışmasına yatkınım.</p>
+  </div>
+</section>
+
+<section id="experience" class="section" data-aos="fade-left" data-aos-duration="1000">
+  <div class="container">
+    <h2>Deneyim</h2>
+    <div class="card">
+      <h3>Narpos Software Development</h3>
+      <p><em>Teknik Destek Uzman Yardımcısı</em> (Nisan 2024 – Haziran 2024)</p>
     </div>
-  </section>
-</main>
+    <div class="card">
+      <h3>Infinidium Technologies</h3>
+      <p><em>Yazılım Geliştirici Yardımcısı</em> (Eylül 2022 – Temmuz 2023)</p>
+    </div>
+    <div class="card">
+      <h3>Infinidium Technologies</h3>
+      <p><em>Yazılım Geliştirici Stajyeri</em> (2022)</p>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="section" data-aos="fade-right" data-aos-duration="1000">
+  <div class="container">
+    <h2>Eğitim</h2>
+    <div class="card">
+      <h3>Anadolu Üniversitesi</h3>
+      <p>Yönetim Bilişim Sistemleri (2022 – Devam ediyor)</p>
+    </div>
+    <div class="card">
+      <h3>Kırklareli Üniversitesi</h3>
+      <p>Bilgisayar Programcılığı (2020 – 2022)</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section" data-aos="fade-left" data-aos-duration="1000">
+  <div class="container">
+    <h2>Projeler</h2>
+    <div class="card">
+      <h3>Roguelike Survival Game</h3>
+      <p>Unity ile geliştirilen, dalga dalga düşmanların geldiği tek oyunculu hayatta kalma oyunu.</p>
+    </div>
+    <div class="card">
+      <h3>CV Web Sitesi</h3>
+      <p>HTML/CSS ile yapılan responsive kişisel tanıtım sayfası.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section" data-aos="fade-up" data-aos-duration="1000">
+  <div class="container">
+    <h2>İletişim</h2>
+    <p>📧 <a href="mailto:emir_odabas@outlook.com">emir_odabas@outlook.com</a></p>
+    <p>🔗 <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a> &nbsp; 💻 <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+  </div>
+</section>
 
 <footer>
   <p>© 2025 Emir Odabaş. Tüm hakları saklıdır.</p>
 </footer>
 
+<!-- AOS JS -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true,
+    easing: 'ease-in-out',
+  });
+</script>
+
 <script src="script.js"></script>
 <script>
-  AOS.init({ once: true, easing: 'ease-in-out' });
+  AOS.init({
+    once: true,
+    easing: 'ease-in-out',
+  });
 </script>
+
 </body>
 </html>
