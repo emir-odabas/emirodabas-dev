@@ -1,59 +1,5 @@
-const spotlight = document.querySelector('.spotlight');
-const navMenu = document.querySelector('.nav-menu');
-const navButtons = Array.from(navMenu.querySelectorAll('.nav-btn'));
-
-function updateSpotlight(element) {
-  const rect = element.getBoundingClientRect();
-  const containerRect = navMenu.getBoundingClientRect();
-  const offset = rect.left - containerRect.left;
-  spotlight.style.width = `${rect.width}px`;
-  spotlight.style.transform = `translateX(${offset}px)`;
-}
-
-navButtons.forEach(btn => {
-  btn.addEventListener('click', e => {
-    if (btn.tagName === 'A') return; // Linkse tıklamada kaydırma yapma
-
-    navButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const targetId = btn.dataset.target;
-    if (targetId) {
-      document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-    }
-    updateSpotlight(btn);
-  });
-});
-
-// Sayfa scroll ile aktif menüyü güncelle
-window.addEventListener('scroll', () => {
-  const about = document.getElementById('about');
-  const projects = document.getElementById('projects');
-  const scrollPos = window.scrollY + 120; // header yüksekliği göz önünde
-
-  if (scrollPos >= projects.offsetTop) {
-    setActiveButton('projects');
-  } else if (scrollPos >= about.offsetTop) {
-    setActiveButton('about');
-  }
-});
-
-function setActiveButton(sectionId) {
-  navButtons.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.target === sectionId);
-  });
-  const activeBtn = navMenu.querySelector('.nav-btn.active');
-  if (activeBtn) updateSpotlight(activeBtn);
-}
-
-// İlk spotlight ayarı
-const initialActive = navMenu.querySelector('.nav-btn.active') || navButtons[0];
-updateSpotlight(initialActive);
-
-// Matrix arka plan animasyonu (önceki kod)
-const canvas = document.createElement('canvas');
-canvas.id = 'matrix-canvas';
-document.body.prepend(canvas);
+// Matrix kod yağmuru arka plan
+const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 
 let width, height;
@@ -70,10 +16,10 @@ const columns = Math.floor(width / fontSize);
 const drops = new Array(columns).fill(1);
 
 function drawMatrix() {
-  ctx.fillStyle = 'rgba(18, 18, 18, 0.15)';
+  ctx.fillStyle = 'rgba(18, 18, 18, 0.15)'; // arka plan karartma efekti
   ctx.fillRect(0, 0, width, height);
 
-  ctx.fillStyle = '#82aaff';
+  ctx.fillStyle = '#82aaff'; // neon mavi renk
   ctx.font = fontSize + 'px monospace';
 
   for (let i = 0; i < drops.length; i++) {
@@ -86,6 +32,36 @@ function drawMatrix() {
     drops[i]++;
   }
 }
+
+// Fare hareketiyle başlıklara glow ve hafif kayma efekti
+
+const interactives = document.querySelectorAll('.interactive');
+
+document.addEventListener('mousemove', (e) => {
+  const x = e.clientX;
+  const y = e.clientY;
+
+  interactives.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const elX = rect.left + rect.width / 2;
+    const elY = rect.top + rect.height / 2;
+
+    const dx = (x - elX) / rect.width;  // -1 .. 1
+    const dy = (y - elY) / rect.height;
+
+    const maxTranslate = 10; // px cinsinden hareket mesafesi
+
+    el.style.transform = `translate3d(${dx * maxTranslate}px, ${dy * maxTranslate}px, 0)`;
+    
+    // Glow efektini fare yaklaştıkça artır
+    const distance = Math.sqrt(dx*dx + dy*dy);
+    if (distance < 0.8) {
+      el.classList.add('glow');
+    } else {
+      el.classList.remove('glow');
+    }
+  });
+});
 
 function animate() {
   drawMatrix();
