@@ -1,43 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* Neon glow efektleri ve hover animasyonu */
-.interactive {
-  position: relative;
-  color: #82aaff;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-  cursor: default;
-  user-select: none;
-}
-
-.interactive:hover,
-.interactive.glow {
-  color: #a0d8ff;
-  text-shadow:
-    0 0 5px #a0d8ff,
-    0 0 10px #82aaff,
-    0 0 20px #82aaff,
-    0 0 30px #a0d8ff;
-}
-
-/* Başlıklarda hafif hareket efektleri için */
-.interactive {
-  will-change: transform;
-}
-
-
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; padding: 0; box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
 
 body {
   background-color: #121212;
   color: #eee;
-  line-height: 1.6;
   scroll-behavior: smooth;
+  min-height: 100vh;
+  position: relative;
+  padding-top: 100px; /* Header yüksekliği */
 }
 
 .container {
@@ -47,18 +21,28 @@ body {
 }
 
 header {
-  background-color: #1f1f1f;
-  padding: 20px 0;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100px;
+  background-color: #1f1f1fcc;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.75);
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-header .container {
+.header-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+.top-menu {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
 .logo {
@@ -68,26 +52,67 @@ header .container {
   user-select: none;
 }
 
-nav ul {
-  list-style: none;
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
   display: flex;
-  gap: 24px;
+  align-items: center;
+  transition: transform 0.3s ease;
 }
 
-nav ul li a {
-  color: #eee;
-  text-decoration: none;
+.icon-btn:hover {
+  transform: scale(1.2);
+}
+
+.sub-menu {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  user-select: none;
+  border-bottom: 2px solid #2a2a2a;
+  padding-bottom: 6px;
+}
+
+.sub-btn {
+  background: none;
+  border: none;
+  color: #aaa;
   font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  padding: 6px 12px;
+  font-size: 16px;
   transition: color 0.3s ease;
+  user-select: none;
 }
 
-nav ul li a:hover,
-nav ul li a:focus {
+.sub-btn:hover,
+.sub-btn.active {
   color: #82aaff;
+}
+
+.sub-btn:focus {
   outline: none;
 }
 
-/* Section styling */
+.sub-menu a.sub-btn {
+  text-decoration: none;
+}
+
+.spotlight {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 80px;
+  background: #82aaff;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* Bölüm stilleri */
 
 .section {
   padding: 80px 0;
@@ -102,57 +127,10 @@ h2 {
   user-select: none;
 }
 
-.card {
-  background-color: #222;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(130, 170, 255, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(130, 170, 255, 0.4);
-}
-
 p {
   font-size: 18px;
-  margin-bottom: 15px;
+  line-height: 1.6;
   color: #ddd;
-}
-
-a {
-  color: #82aaff;
-  text-decoration: none;
-}
-
-a:hover,
-a:focus {
-  text-decoration: underline;
-  outline: none;
-}
-
-/* Hero Section */
-
-.hero {
-  text-align: center;
-  padding: 120px 20px 100px 20px;
-  background: linear-gradient(135deg, #3a3f58 0%, #1f233e 100%);
-  user-select: none;
-}
-
-.hero h2 {
-  font-size: 42px;
-  color: #82aaff;
-  margin-bottom: 12px;
-}
-
-.hero p {
-  font-size: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-  color: #ccd6f6;
 }
 
 /* Footer */
@@ -162,33 +140,23 @@ footer {
   text-align: center;
   padding: 20px 0;
   color: #666;
-  user-select: none;
   font-size: 14px;
+  user-select: none;
 }
 
 /* Responsive */
 
 @media (max-width: 768px) {
-  header .container {
+  .top-menu {
     flex-direction: column;
+    align-items: flex-start;
+  }
+  .logo {
+    font-size: 24px;
+  }
+  .sub-menu {
     gap: 12px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .hero h2 {
-    font-size: 32px;
-  }
-
-  h2 {
-    font-size: 26px;
-  }
-
-  p {
-    font-size: 16px;
+    overflow-x: auto;
+    padding-bottom: 10px;
   }
 }
