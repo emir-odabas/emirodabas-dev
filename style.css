@@ -1,5 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+/* Neon glow efektleri ve hover animasyonu */
+.interactive {
+  position: relative;
+  color: #82aaff;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  cursor: default;
+  user-select: none;
+}
+
+.interactive:hover,
+.interactive.glow {
+  color: #a0d8ff;
+  text-shadow:
+    0 0 5px #a0d8ff,
+    0 0 10px #82aaff,
+    0 0 20px #82aaff,
+    0 0 30px #a0d8ff;
+}
+
+/* Başlıklarda hafif hareket efektleri için */
+.interactive {
+  will-change: transform;
+}
+
+
+
 * {
   margin: 0;
   padding: 0;
