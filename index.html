@@ -92,12 +92,23 @@
     <h2>Projeler</h2>
     <div class="card">
       <h3>Roguelike Survival Game</h3>
-      <p>Unity ile geliştirilen, dalga dalga düşmanların geldiği tek oyunculu hayatta kalma oyunu.</p>
+      <button class="btn-detail" data-project="1">Detayları Görüntüle</button>
     </div>
     <div class="card">
-      <h3>CV Web Sitesi</h3>
-      <p>HTML/CSS ile yapılan responsive kişisel tanıtım sayfası.</p>
+      <h3>Unity Mobil Platformu</h3>
+      <button class="btn-detail" data-project="2">Detayları Görüntüle</button>
     </div>
+    <div class="card">
+      <h3>C# Desktop Uygulaması</h3>
+      <button class="btn-detail" data-project="3">Detayları Görüntüle</button>
+    </div>
+  </div>
+</section>
+
+<section id="technical" class="section" data-aos="fade-right" data-aos-duration="1000">
+  <div class="container">
+    <h2>Teknik Bilgilerim</h2>
+    <button id="btn-tech-detail">Detayları Görüntüle</button>
   </div>
 </section>
 
@@ -129,6 +140,15 @@
     easing: 'ease-in-out',
   });
 </script>
+
+<!-- Modal Arayüzü -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <span id="modal-close" class="modal-close">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
 
 </body>
 </html>
