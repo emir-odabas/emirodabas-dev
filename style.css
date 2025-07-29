@@ -1,5 +1,3 @@
-/* style.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 * {
@@ -65,16 +63,8 @@ nav ul li a:focus {
 
 /* Section styling */
 
-section {
+.section {
   padding: 80px 0;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 h2 {
@@ -86,22 +76,35 @@ h2 {
   user-select: none;
 }
 
-ul {
-  list-style-type: disc;
-  padding-left: 20px;
+.card {
+  background-color: #222;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(130, 170, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-ul li {
-  margin-bottom: 12px;
-  font-weight: 400;
-  font-size: 18px;
-  color: #ccc;
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(130, 170, 255, 0.4);
 }
 
 p {
   font-size: 18px;
   margin-bottom: 15px;
   color: #ddd;
+}
+
+a {
+  color: #82aaff;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+  outline: none;
 }
 
 /* Hero Section */
@@ -124,20 +127,6 @@ p {
   max-width: 600px;
   margin: 0 auto;
   color: #ccd6f6;
-}
-
-/* Contact links */
-
-#contact p a {
-  color: #82aaff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-#contact p a:hover,
-#contact p a:focus {
-  text-decoration: underline;
-  outline: none;
 }
 
 /* Footer */
@@ -173,7 +162,7 @@ footer {
     font-size: 26px;
   }
 
-  ul li, p {
+  p {
     font-size: 16px;
   }
 }
