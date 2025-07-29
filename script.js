@@ -89,15 +89,21 @@ document.querySelectorAll('.btn-detail').forEach(btn => {
     const proj = projectDetails[id];
     if (!proj) return;
     const content = `
-      <h3>${proj.title}</h3>
-      <p><strong>Oluşturulma Tarihi:</strong> ${proj.date}</p>
-      <p><strong>Kullanılan Araçlar:</strong> ${proj.tools}</p>
-      <p><strong>Platform:</strong> ${proj.platform}</p>
-      <p><strong>Açıklama:</strong> ${proj.description}</p>
-      <h4>Özellikler:</h4>
-      <ul>${proj.features.map(f => `<li>${f}</li>`).join('')}</ul>
-      <h4>Teknik Detaylar:</h4>
-      <ul>${proj.technical.map(t => `<li>${t}</li>`).join('')}</ul>
+      <h3 class="modal-title">${proj.title}</h3>
+      <div class="modal-grid" style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <p><strong>📅 Oluşturulma Tarihi:</strong> ${proj.date}</p>
+          <p><strong>🛠 Araçlar:</strong> ${proj.tools}</p>
+          <p><strong>🖥 Platform:</strong> ${proj.platform}</p>
+        </div>
+        <div style="flex: 2; min-width: 250px;">
+          <p><strong>📘 Açıklama:</strong> ${proj.description}</p>
+          <h4>🚀 Özellikler:</h4>
+          <ul>${proj.features.map(f => `<li>✔ ${f}</li>`).join('')}</ul>
+          <h4>⚙ Teknik Detaylar:</h4>
+          <ul>${proj.technical.map(t => `<li>🔧 ${t}</li>`).join('')}</ul>
+        </div>
+      </div>
     `;
     openModal(content);
   });
@@ -108,9 +114,6 @@ document.getElementById('btn-tech-detail').addEventListener('click', () => {
 });
 
 
-
-
-// Matrix kod yağmuru arka plan
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -122,31 +125,56 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-const letters = '0123456789ABCDEF'.split('');
-const fontSize = 16;
-const columns = Math.floor(width / fontSize);
-const drops = new Array(columns).fill(1);
+const particles = [];
+const particleCount = 100;
 
-function drawMatrix() {
-  ctx.fillStyle = 'rgba(18, 18, 18, 0.15)'; // arka plan karartma efekti
-  ctx.fillRect(0, 0, width, height);
+class Particle {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.radius = Math.random() * 2 + 1;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+  }
 
-  ctx.fillStyle = '#82aaff'; // neon mavi renk
-  ctx.font = fontSize + 'px monospace';
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
 
-  for (let i = 0; i < drops.length; i++) {
-    const text = letters[Math.floor(Math.random() * letters.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    if (this.x < 0 || this.x > width) this.speedX *= -1;
+    if (this.y < 0 || this.y > height) this.speedY *= -1;
+  }
 
-    if (drops[i] * fontSize > height && Math.random() > 0.975) {
-      drops[i] = 0;
-    }
-    drops[i]++;
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = '#82aaff';
+    ctx.shadowColor = '#82aaff';
+    ctx.shadowBlur = 8;
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
   }
 }
 
-// Fare hareketiyle başlıklara glow ve hafif kayma efekti
+for(let i = 0; i < particleCount; i++) {
+  particles.push(new Particle());
+}
 
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = '#0e0e0e';
+  ctx.fillRect(0, 0, width, height);
+
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+
+// Fare hareketiyle başlıklara glow ve hafif kayma efekti
 const interactives = document.querySelectorAll('.interactive');
 
 document.addEventListener('mousemove', (e) => {
@@ -158,7 +186,7 @@ document.addEventListener('mousemove', (e) => {
     const elX = rect.left + rect.width / 2;
     const elY = rect.top + rect.height / 2;
 
-    const dx = (x - elX) / rect.width;  // -1 .. 1
+    const dx = (x - elX) / rect.width;  // -1 .. 1 arası
     const dy = (y - elY) / rect.height;
 
     const maxTranslate = 10; // px cinsinden hareket mesafesi
@@ -175,8 +203,52 @@ document.addEventListener('mousemove', (e) => {
   });
 });
 
-function animate() {
-  drawMatrix();
-  requestAnimationFrame(animate);
+
+const monsterContainer = document.getElementById('monster-container');
+
+const monsters = [];
+
+function createMonster() {
+  const m = document.createElement('div');
+  m.classList.add('monster');
+
+  // Rastgele boyut (20-50 px)
+  const size = 20 + Math.random() * 30;
+  m.style.width = size + 'px';
+  m.style.height = size + 'px';
+
+  // Başlangıç pozisyonu (header içinde yatay)
+  m.style.top = (Math.random() * 60 + 20) + 'px'; // header yüksekliği içinde
+  m.style.left = (Math.random() * window.innerWidth) + 'px';
+
+  // Rastgele hız ve yön (pozitif veya negatif)
+  m.speed = (Math.random() * 0.3 + 0.1) * (Math.random() < 0.5 ? 1 : -1);
+
+  monsterContainer.appendChild(m);
+  monsters.push(m);
 }
-animate();
+
+for(let i = 0; i < 8; i++) { // 8 tane canavar
+  createMonster();
+}
+
+function animateMonsters() {
+  monsters.forEach(m => {
+    let left = parseFloat(m.style.left);
+    left += m.speed;
+
+    // Ekran dışına çıkınca yön değiştir
+    if (left < -50) left = window.innerWidth;
+    if (left > window.innerWidth) left = -50;
+
+    m.style.left = left + 'px';
+  });
+  requestAnimationFrame(animateMonsters);
+}
+
+animateMonsters();
+
+window.addEventListener('resize', () => {
+  // Canavarların sınırları güncellenir (istersen ekle)
+});
+
