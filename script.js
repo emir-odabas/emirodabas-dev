@@ -1,7 +1,59 @@
-// Matrix arka plan kodu (önceki versiyondan)
-// Aynı şekilde arka planda kod yağmuru devam eder
+const spotlight = document.querySelector('.spotlight');
+const navMenu = document.querySelector('.nav-menu');
+const navButtons = Array.from(navMenu.querySelectorAll('.nav-btn'));
 
-const canvas = document.getElementById('matrix-canvas');
+function updateSpotlight(element) {
+  const rect = element.getBoundingClientRect();
+  const containerRect = navMenu.getBoundingClientRect();
+  const offset = rect.left - containerRect.left;
+  spotlight.style.width = `${rect.width}px`;
+  spotlight.style.transform = `translateX(${offset}px)`;
+}
+
+navButtons.forEach(btn => {
+  btn.addEventListener('click', e => {
+    if (btn.tagName === 'A') return; // Linkse tıklamada kaydırma yapma
+
+    navButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const targetId = btn.dataset.target;
+    if (targetId) {
+      document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+    }
+    updateSpotlight(btn);
+  });
+});
+
+// Sayfa scroll ile aktif menüyü güncelle
+window.addEventListener('scroll', () => {
+  const about = document.getElementById('about');
+  const projects = document.getElementById('projects');
+  const scrollPos = window.scrollY + 120; // header yüksekliği göz önünde
+
+  if (scrollPos >= projects.offsetTop) {
+    setActiveButton('projects');
+  } else if (scrollPos >= about.offsetTop) {
+    setActiveButton('about');
+  }
+});
+
+function setActiveButton(sectionId) {
+  navButtons.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.target === sectionId);
+  });
+  const activeBtn = navMenu.querySelector('.nav-btn.active');
+  if (activeBtn) updateSpotlight(activeBtn);
+}
+
+// İlk spotlight ayarı
+const initialActive = navMenu.querySelector('.nav-btn.active') || navButtons[0];
+updateSpotlight(initialActive);
+
+// Matrix arka plan animasyonu (önceki kod)
+const canvas = document.createElement('canvas');
+canvas.id = 'matrix-canvas';
+document.body.prepend(canvas);
 const ctx = canvas.getContext('2d');
 
 let width, height;
@@ -34,58 +86,6 @@ function drawMatrix() {
     drops[i]++;
   }
 }
-
-// Spotlight hareketi
-
-const subMenu = document.querySelector('.sub-menu');
-const spotlight = document.querySelector('.spotlight');
-const buttons = Array.from(subMenu.querySelectorAll('.sub-btn'));
-
-function updateSpotlight(el) {
-  const rect = el.getBoundingClientRect();
-  const containerRect = subMenu.getBoundingClientRect();
-  const offsetLeft = rect.left - containerRect.left;
-  spotlight.style.width = rect.width + 'px';
-  spotlight.style.transform = `translateX(${offsetLeft}px)`;
-}
-
-// Başlangıçta aktif buton spotlighta yerleştir
-const activeBtn = subMenu.querySelector('.sub-btn.active');
-if (activeBtn) updateSpotlight(activeBtn);
-
-buttons.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    // Eğer link ise scroll yapma, sadece active değiştir
-    if (btn.tagName === 'A') return;
-
-    buttons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    updateSpotlight(btn);
-
-    // İlgili bölüme scroll
-    const sectionId = btn.dataset.section;
-    if (sectionId) {
-      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-
-// Scroll event ile dinamik üst menü değişimi
-
-window.addEventListener('scroll', () => {
-  const aboutSection = document.getElementById('about');
-  const rect = aboutSection.getBoundingClientRect();
-
-  if (rect.top <= 100 && rect.bottom > 100) {
-    // About görünürken, About butonunu spotlight ile vurgula
-    buttons.forEach(b => b.classList.remove('active'));
-    const aboutBtn = subMenu.querySelector('.sub-btn[data-section="about"]');
-    aboutBtn.classList.add('active');
-    updateSpotlight(aboutBtn);
-  }
-});
-
-// Animasyon devam etsin
 
 function animate() {
   drawMatrix();
