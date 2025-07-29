@@ -1,60 +1,46 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emir Odabaş | Kişisel Web Sitesi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <style>
-    /* Canvas arka plan */
-    #matrix-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: -1;
-      background: #121212;
-      display: block;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emir Odabaş</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
 
-<canvas id="matrix-canvas"></canvas>
+<header class="header">
+  <div class="header-content">
+    <a href="#" class="home-link" aria-label="Anasayfa">
+      <svg class="home-icon" viewBox="0 0 24 24" fill="#82aaff" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 12l9-9 9 9h-3v9h-12v-9h-3z"/></svg>
+      <span class="site-name">EMIR ODABAS</span>
+    </a>
 
-<header>
-  <div class="container header-container">
-    <div class="top-menu">
-      <button class="icon-btn home-btn" aria-label="Anasayfa" title="Anasayfa">
-        <!-- Basit ev ikonu SVG -->
-        <svg width="20" height="20" fill="#82aaff" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9h-3v9h-12v-9h-3z"/></svg>
-      </button>
-      <h1 class="logo">EMIR ODABAS</h1>
-    </div>
-
-    <nav class="sub-menu">
-      <button class="sub-btn active" data-section="about">About Me</button>
-      <a class="sub-btn" href="https://github.com/emirodabas" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="sub-btn" href="https://linkedin.com/in/emirodabas" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a class="sub-btn" href="mailto:emir_odabas@outlook.com">Email</a>
+    <nav class="nav-menu">
+      <button class="nav-btn active" data-target="about">About Me</button>
+      <a href="https://github.com/emirodabas" target="_blank" rel="noopener" class="nav-btn">GitHub</a>
+      <a href="https://linkedin.com/in/emirodabas" target="_blank" rel="noopener" class="nav-btn">LinkedIn</a>
+      <a href="mailto:emir_odabas@outlook.com" class="nav-btn">Email</a>
       <div class="spotlight"></div>
     </nav>
   </div>
 </header>
 
 <main>
-  <section id="about" class="section" data-aos="fade-right" data-aos-duration="800">
+  <section id="about" class="section" data-aos="fade-up">
     <div class="container">
-      <h2>Hakkımda</h2>
-      <p>Bilgisayar programcılığı ve yönetim bilişim sistemleri alanlarında eğitim almış, oyun geliştirme tutkusu olan bir yazılım geliştiriciyim. C# dilinde orta düzeyde tecrübeye ve Unity üzerinde proje geliştirme deneyimine sahibim. Öğrenmeye açık, çözüm odaklı ve takım çalışmasına yatkınım.</p>
+      <h2>About Me</h2>
+      <p>
+        Bilgisayar programcılığı ve yönetim bilişim sistemleri alanlarında eğitim almış, oyun geliştirme tutkusu olan bir yazılım geliştiriciyim. C# dilinde orta düzeyde tecrübeye ve Unity üzerinde proje geliştirme deneyimine sahibim. Öğrenmeye açık, çözüm odaklı ve takım çalışmasına yatkınım.
+      </p>
     </div>
   </section>
 
-  <section id="projects" class="section" data-aos="fade-left" data-aos-duration="800">
+  <section id="projects" class="section" data-aos="fade-up">
     <div class="container">
-      <h2>Projeler</h2>
-      <p>(Proje içerikleri yakında eklenecek.)</p>
+      <h2>Projects</h2>
+      <p>Proje içerikleri yakında eklenecek.</p>
     </div>
   </section>
 </main>
