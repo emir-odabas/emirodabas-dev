@@ -1,4 +1,6 @@
-// Matrix kod yağmuru arka plan
+// Matrix arka plan kodu (önceki versiyondan)
+// Aynı şekilde arka planda kod yağmuru devam eder
+
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -16,10 +18,10 @@ const columns = Math.floor(width / fontSize);
 const drops = new Array(columns).fill(1);
 
 function drawMatrix() {
-  ctx.fillStyle = 'rgba(18, 18, 18, 0.15)'; // arka plan karartma efekti
+  ctx.fillStyle = 'rgba(18, 18, 18, 0.15)';
   ctx.fillRect(0, 0, width, height);
 
-  ctx.fillStyle = '#82aaff'; // neon mavi renk
+  ctx.fillStyle = '#82aaff';
   ctx.font = fontSize + 'px monospace';
 
   for (let i = 0; i < drops.length; i++) {
@@ -33,35 +35,57 @@ function drawMatrix() {
   }
 }
 
-// Fare hareketiyle başlıklara glow ve hafif kayma efekti
+// Spotlight hareketi
 
-const interactives = document.querySelectorAll('.interactive');
+const subMenu = document.querySelector('.sub-menu');
+const spotlight = document.querySelector('.spotlight');
+const buttons = Array.from(subMenu.querySelectorAll('.sub-btn'));
 
-document.addEventListener('mousemove', (e) => {
-  const x = e.clientX;
-  const y = e.clientY;
+function updateSpotlight(el) {
+  const rect = el.getBoundingClientRect();
+  const containerRect = subMenu.getBoundingClientRect();
+  const offsetLeft = rect.left - containerRect.left;
+  spotlight.style.width = rect.width + 'px';
+  spotlight.style.transform = `translateX(${offsetLeft}px)`;
+}
 
-  interactives.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    const elX = rect.left + rect.width / 2;
-    const elY = rect.top + rect.height / 2;
+// Başlangıçta aktif buton spotlighta yerleştir
+const activeBtn = subMenu.querySelector('.sub-btn.active');
+if (activeBtn) updateSpotlight(activeBtn);
 
-    const dx = (x - elX) / rect.width;  // -1 .. 1
-    const dy = (y - elY) / rect.height;
+buttons.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    // Eğer link ise scroll yapma, sadece active değiştir
+    if (btn.tagName === 'A') return;
 
-    const maxTranslate = 10; // px cinsinden hareket mesafesi
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    updateSpotlight(btn);
 
-    el.style.transform = `translate3d(${dx * maxTranslate}px, ${dy * maxTranslate}px, 0)`;
-    
-    // Glow efektini fare yaklaştıkça artır
-    const distance = Math.sqrt(dx*dx + dy*dy);
-    if (distance < 0.8) {
-      el.classList.add('glow');
-    } else {
-      el.classList.remove('glow');
+    // İlgili bölüme scroll
+    const sectionId = btn.dataset.section;
+    if (sectionId) {
+      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
     }
   });
 });
+
+// Scroll event ile dinamik üst menü değişimi
+
+window.addEventListener('scroll', () => {
+  const aboutSection = document.getElementById('about');
+  const rect = aboutSection.getBoundingClientRect();
+
+  if (rect.top <= 100 && rect.bottom > 100) {
+    // About görünürken, About butonunu spotlight ile vurgula
+    buttons.forEach(b => b.classList.remove('active'));
+    const aboutBtn = subMenu.querySelector('.sub-btn[data-section="about"]');
+    aboutBtn.classList.add('active');
+    updateSpotlight(aboutBtn);
+  }
+});
+
+// Animasyon devam etsin
 
 function animate() {
   drawMatrix();
