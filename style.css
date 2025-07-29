@@ -1,81 +1,89 @@
 /* style.css */
 
-/* Genel Ayarlar */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
+  background-color: #121212;
+  color: #eee;
   line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 header {
-  background-color: #111;
-  color: white;
+  background-color: #1f1f1f;
   padding: 20px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.7);
 }
 
-nav {
-  width: 90%;
-  margin: auto;
+header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-nav h1 {
-  font-size: 24px;
+.logo {
+  font-weight: 700;
+  font-size: 28px;
+  color: #82aaff;
+  user-select: none;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
-nav a {
-  color: white;
+nav ul li a {
+  color: #eee;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
-.hero {
-  background: linear-gradient(to right, #4b6cb7, #182848);
-  color: white;
-  padding: 60px 20px;
-  text-align: center;
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #82aaff;
+  outline: none;
 }
 
-.hero h2 {
-  font-size: 36px;
-  margin-bottom: 15px;
-}
-
-.container {
-  max-width: 800px;
-  margin: auto;
-}
+/* Section styling */
 
 section {
-  padding: 60px 20px;
-  max-width: 800px;
-  margin: auto;
+  padding: 80px 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h2 {
-  font-size: 28px;
+  font-size: 32px;
   margin-bottom: 20px;
-  color: #222;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
+  color: #82aaff;
+  border-bottom: 2px solid #82aaff;
+  padding-bottom: 8px;
+  user-select: none;
 }
 
 ul {
@@ -84,29 +92,88 @@ ul {
 }
 
 ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #ccc;
 }
+
+p {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+/* Hero Section */
+
+.hero {
+  text-align: center;
+  padding: 120px 20px 100px 20px;
+  background: linear-gradient(135deg, #3a3f58 0%, #1f233e 100%);
+  user-select: none;
+}
+
+.hero h2 {
+  font-size: 42px;
+  color: #82aaff;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #ccd6f6;
+}
+
+/* Contact links */
+
+#contact p a {
+  color: #82aaff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#contact p a:hover,
+#contact p a:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Footer */
 
 footer {
-  background-color: #111;
-  color: white;
+  background-color: #1f1f1f;
   text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+  padding: 20px 0;
+  color: #666;
+  user-select: none;
+  font-size: 14px;
 }
 
-/* Mobil Uyum */
+/* Responsive */
+
 @media (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
   nav ul {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 12px;
+    align-items: center;
   }
 
   .hero h2 {
-    font-size: 28px;
+    font-size: 32px;
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 26px;
+  }
+
+  ul li, p {
+    font-size: 16px;
   }
 }
