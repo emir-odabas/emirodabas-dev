@@ -1,90 +1,69 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Emir Odabaş - Kişisel CV ve Portfolyo Web Sitesi">
-  <title>Emir Odabaş | Kişisel Web Sitesi</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>emirodabas-dev</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
-  <header>
+  <header class="navbar">
     <nav>
-      <h1>Emir Odabaş</h1>
-      <ul>
-        <li><a href="#about">Hakkımda</a></li>
-        <li><a href="#experience">Deneyim</a></li>
-        <li><a href="#education">Eğitim</a></li>
-        <li><a href="#projects">Projeler</a></li>
-        <li><a href="#contact">İletişim</a></li>
-      </ul>
-    </nav>
+  <a href="#" class="nav-link" data-page="home">
+    <span class="icon"> 
+       <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 256 256" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M216,120v96H152V152H104v64H40V120a8,8,0,0,1,2.34-5.66l80-80a8,8,0,0,1,11.32,0l80,80A8,8,0,0,1,216,120Z" opacity="0.2">
+      </path>
+      <path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z">
+      </path>
+    </svg>
+    </span>
+  </a>
+  <a href="#" class="nav-link" data-page="about">
+    <span class="icon">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 256 256" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+        <path d="M224,128a95.76,95.76,0,0,1-31.8,71.37A72,72,0,0,0,128,160a40,40,0,1,0-40-40,40,40,0,0,0,40,40,72,72,0,0,0-64.2,39.37h0A96,96,0,1,1,224,128Z" opacity="0.2">
+        </path>
+        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z">
+      </path>
+    </svg>
+    </span>
+    <span>About</span>
+  </a>
+  <a href="#" class="nav-link" data-page="projects">
+    <span class="icon">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 256 256" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+        <path d="M208,56V200a8,8,0,0,1-8,8H56a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8H200A8,8,0,0,1,208,56Z" opacity="0.2">
+      </path>
+      <path d="M200,40H56A16,16,0,0,0,40,56V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,80H136V56h64ZM120,56v64H56V56ZM56,136h64v64H56Zm144,64H136V136h64v64Z">
+      </path>
+    </svg>
+    </span>
+    <span>Projects</span>
+  </a>
+</nav>
   </header>
-
-  <section class="hero">
-    <div class="container">
-      <h2>Yazılım Geliştirici & Oyun Tutkunu</h2>
-      <p>
-        Bilgisayar programcılığı ve yönetim bilişim sistemleri alanlarında eğitim
-        almış, oyun geliştirme tutkusu olan bir yazılım geliştiriciyim. C# dilinde orta
-        düzeyde tecrübeye ve Unity üzerinde proje geliştirme deneyimine sahibim.
-      </p>
-    </div>
-  </section>
-
-  <section id="about">
-    <h2>Hakkımda</h2>
-    <p>
-      Öğrenmeye açık, çözüm odaklı ve takım çalışmasına yatkın bir yazılımcıyım. Hedefim oyun geliştirme alanında uzmanlaşmak ve sürekli kendimi geliştirmektir.
-    </p>
-  </section>
-
-  <section id="experience">
-    <h2>Deneyim</h2>
-    <ul>
-      <li><strong>Narpos Software Development</strong> – Teknik Destek Uzman Yardımcısı <em>(Nisan 2024 – Haziran 2024)</em></li>
-      <li><strong>Infinidium Technologies</strong> – Yazılım Geliştirici Yardımcısı <em>(Eylül 2022 – Temmuz 2023)</em></li>
-      <li><strong>Infinidium Technologies</strong> – Yazılım Geliştirici Stajyeri <em>(2022)</em></li>
-    </ul>
-  </section>
-
-  <section id="education">
-    <h2>Eğitim</h2>
-    <ul>
-      <li>Anadolu Üniversitesi – Yönetim Bilişim Sistemleri (2022 – Devam ediyor)</li>
-      <li>Kırklareli Üniversitesi – Bilgisayar Programcılığı (2020 – 2022)</li>
-    </ul>
-  </section>
-
-  <section id="projects">
-    <h2>Projeler</h2>
-    <ul>
-      <li><strong>Roguelike Survival Game</strong> – Unity ile geliştirilen, dalga dalga düşmanların geldiği tek oyunculu hayatta kalma oyunu.</li>
-      <li><strong>CV Web Sitesi</strong> – HTML/CSS ile yapılan responsive kişisel tanıtım sayfası.</li>
-    </ul>
-  </section>
-
-  <section id="skills">
-    <h2>Yetenekler</h2>
-    <ul>
-      <li>Programlama: C#, HTML, CSS, JavaScript</li>
-      <li>Oyun Geliştirme: Unity, Visual Studio</li>
-      <li>Veritabanı: SQL</li>
-      <li>Versiyon Kontrol: Git, GitHub</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>İletişim</h2>
-    <ul>
-      <li>📧 <a href="mailto:emir_odabas@outlook.com">emir_odabas@outlook.com</a></li>
-      <li>🔗 <a href="#" target="_blank">LinkedIn</a></li>
-      <li>💻 <a href="#" target="_blank">GitHub</a></li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Emir Odabaş. Tüm hakları saklıdır.</p>
-  </footer>
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span id="modalClose" class="modal-close">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+  </div>
+</div>
+  <main id="content">
+  </main>
+<footer class="site-footer">
+  <p>© 2025 Emir Odabaş. All rights reserved.</p>
+</footer>
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+  duration: 800,
+  once: true,
+});
+  </script>
 </body>
 </html>
