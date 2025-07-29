@@ -1,3 +1,115 @@
+const modal = document.getElementById('modal');
+const modalBody = document.getElementById('modal-body');
+const modalClose = document.getElementById('modal-close');
+
+const projectDetails = {
+  1: {
+    title: "Roguelike Survival Game",
+    date: "2024",
+    tools: "Unity, C#",
+    platform: "PC",
+    description: "Dalga dalga gelen düşmanlarla hayatta kalma oyunu.",
+    features: [
+      "Procedural generation",
+      "Zorlu düşman AI",
+      "Seviye ilerleme sistemi"
+    ],
+    technical: [
+      "Unity 2023.1",
+      "C# .NET 7",
+      "Post-processing efektleri"
+    ]
+  },
+  2: {
+    title: "Unity Mobil Platformu",
+    date: "2023",
+    tools: "Unity, C#",
+    platform: "Mobil (Android & iOS)",
+    description: "Mobil için optimize edilmiş 2D platform oyunu.",
+    features: [
+      "Dokunmatik kontroller",
+      "Optimized graphics",
+      "Leaderboard sistemi"
+    ],
+    technical: [
+      "Unity 2022.3",
+      "C#",
+      "Firebase entegrasyonu"
+    ]
+  },
+  3: {
+    title: "C# Desktop Uygulaması",
+    date: "2022",
+    tools: "C#, WPF",
+    platform: "Windows PC",
+    description: "Veri yönetimi ve raporlama uygulaması.",
+    features: [
+      "Veritabanı bağlantısı",
+      "Dinamik raporlama",
+      "Kullanıcı dostu arayüz"
+    ],
+    technical: [
+      ".NET Framework 4.8",
+      "Entity Framework",
+      "MVVM pattern"
+    ]
+  }
+};
+
+const technicalDetails = `
+  <h3>Teknik Yeteneklerim</h3>
+  <ul>
+    <li>C# / .NET (Orta İleri Seviye)</li>
+    <li>Unity Oyun Geliştirme</li>
+    <li>Veritabanı Yönetimi (SQL Server, MySQL)</li>
+    <li>Web Teknolojileri (HTML, CSS, JavaScript)</li>
+    <li>Git ve Versiyon Kontrol Sistemleri</li>
+  </ul>
+  <p>Daha fazlası için iletişime geçebilirsiniz.</p>
+`;
+
+function openModal(content) {
+  modalBody.innerHTML = content;
+  modal.classList.remove('hidden');
+}
+
+function closeModal() {
+  modal.classList.add('hidden');
+  modalBody.innerHTML = '';
+}
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
+
+document.querySelectorAll('.btn-detail').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.getAttribute('data-project');
+    const proj = projectDetails[id];
+    if (!proj) return;
+    const content = `
+      <h3>${proj.title}</h3>
+      <p><strong>Oluşturulma Tarihi:</strong> ${proj.date}</p>
+      <p><strong>Kullanılan Araçlar:</strong> ${proj.tools}</p>
+      <p><strong>Platform:</strong> ${proj.platform}</p>
+      <p><strong>Açıklama:</strong> ${proj.description}</p>
+      <h4>Özellikler:</h4>
+      <ul>${proj.features.map(f => `<li>${f}</li>`).join('')}</ul>
+      <h4>Teknik Detaylar:</h4>
+      <ul>${proj.technical.map(t => `<li>${t}</li>`).join('')}</ul>
+    `;
+    openModal(content);
+  });
+});
+
+document.getElementById('btn-tech-detail').addEventListener('click', () => {
+  openModal(technicalDetails);
+});
+
+
+
+
 // Matrix kod yağmuru arka plan
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
