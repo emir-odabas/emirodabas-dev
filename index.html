@@ -1,113 +1,45 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emir Odabaş | Kişisel Web Sitesi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <!-- AOS CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-<style>
-    /* Canvas tam ekran arka plan için */
-    #matrix-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1; /* Arka planda */
-      background: #121212;
-      /*display: block;*/
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>emirodabas-dev</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
-
-<canvas id="matrix-canvas"></canvas>
-
-<header>
-  <div class="container">
-    <h1 class="logo">Emir Odabaş</h1>
+  <header class="navbar">
     <nav>
-      <ul>
-        <li><a href="#about" class="interactive">Hakkımda</a></li>
-        <li><a href="#projects" class="interactive">Projeler</a></li>
-        <li><a href="#technical" class="interactive">Teknik Bilgiler</a></li>
-        <li><a href="#contact" class="interactive">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-  <div id="monster-container"></div> 
-</header>
-
-
-<section class="section" data-aos="fade-up" data-aos-duration="1000">
-  <div class="container hero-content interactive">
-    <h2>Yazılım Geliştirici & Oyun Tutkunu</h2>
-    <p>Unity ve C# ile projeler geliştiren, yaratıcı çözümler üreten bir yazılım geliştirici adayıyım.</p>
-  </div>
-</section>
-
-<section id="about" class="section" data-aos="fade-right" data-aos-duration="1000">
-  <div class=" container hero-content interactive">
-    <h2>Hakkımda</h2>
-    <p>Bilgisayar programcılığı ve yönetim bilişim sistemleri alanlarında eğitim almış, oyun geliştirme tutkusu olan bir yazılım geliştiriciyim. C# dilinde orta düzeyde tecrübeye ve Unity üzerinde proje geliştirme deneyimine sahibim. Öğrenmeye açık, çözüm odaklı ve takım çalışmasına yatkınım.</p>
-  </div>
-</section>
-
-<section id="projects" class="section" data-aos="fade-left" data-aos-duration="1000">
-  <div class="container hero-content interactive">
-    <h2>Projeler</h2>
-    <div class="card">
-      <h3>Roguelike Survival Game</h3>
-      <button class="btn-detail" data-project="1">Detayları Görüntüle</button>
-    </div>
-    <div class="card">
-      <h3>Unity Mobil Platformu</h3>
-      <button class="btn-detail" data-project="2">Detayları Görüntüle</button>
-    </div>
-    <div class="card">
-      <h3>C# Desktop Uygulaması</h3>
-      <button class="btn-detail" data-project="3">Detayları Görüntüle</button>
-    </div>
-  </div>
-</section>
-
-<section id="technical" class="section" data-aos="fade-right" data-aos-duration="1000">
-  <div class="container hero-content interactive">
-    <h2>Teknik Bilgilerim</h2>
-    <button id="btn-tech-detail">Detayları Görüntüle</button>
-  </div>
-</section>
-
-<section id="contact" class="section" data-aos="fade-up" data-aos-duration="1000">
-  <div class="container hero-content interactive">
-    <h2>İletişim</h2>
-    <p>📧 <a href="mailto:emir_odabas@outlook.com">emir_odabas@outlook.com</a></p>
-    <p>🔗 <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a> &nbsp; 💻 <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a></p>
-  </div>
-</section>
-
-
-
-<!-- Modal Arayüzü -->
-<div id="modal" class="modal hidden">
+  <a href="#" class="nav-link" data-page="home">
+    <span class="icon">🏠</span>
+  </a>
+  <a href="#" class="nav-link" data-page="about">
+    <span class="icon">👤</span>
+    <span>About</span>
+  </a>
+  <a href="#" class="nav-link" data-page="projects">
+    <span class="icon">🗂️</span>
+    <span>Projects</span>
+  </a>
+</nav>
+  </header>
+<div id="projectModal" class="modal">
   <div class="modal-content">
-    <span id="modal-close" class="modal-close">&times;</span>
-    <div id="modal-body"></div>
+    <span id="modalClose" class="modal-close">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
   </div>
 </div>
-
-<!-- AOS JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    once: true,
-    easing: 'ease-in-out',
-  });
-</script>
-
-<script src="script.js"></script>
+  <main id="content">
+  </main>
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+  duration: 800,
+  once: true,
+});
+  </script>
 </body>
 </html>
