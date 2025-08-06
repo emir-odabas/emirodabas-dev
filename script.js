@@ -24,24 +24,60 @@ document.addEventListener('DOMContentLoaded', () => {
   function loadPage(page) {
     if (page === 'home') {
       content.innerHTML = `
-        <section class="home-intro" data-aos="fade-right">
-      <h1>Welcome 👋</h1>
-      <p>This is the home page of emirodabas-dev.</p>
-    </section>
-      `;
+      <section class="home-intro" data-aos="fade-right">
+          <h1>Welcome 👋</h1>
+         <p>This is the home page of emirodabas-dev.</p>
+        <div class="button-grids" style="display: flex; gap: 16px; flex-wrap: wrap;">
+           <a href="https://instagram.com/" target="_blank" class="btn">
+           <span class="icon">
+           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram" width="20" height="20" />
+           </span>
+           Instagram
+           </a>
+           <a href="https://linkedin.com/" target="_blank" class="btn">
+          <span class="icon">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn" width="20" height="20" />
+          </span>
+          LinkedIn
+          </a>
+          <a href="https://github.com/" target="_blank" class="btn">
+          <span class="icon">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" width="20" height="20" />
+          </span>
+           GitHub
+          </a>
+          <a href="https://youtube.com/" target="_blank" class="btn">
+          <span class="icon">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg" alt="YouTube" width="20" height="20" />
+          </span>
+          YouTube
+          </a>
+          <a href="https://x.com/" target="_blank" class="btn">
+          <span class="icon">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg" alt="X" width="20" height="20" />
+          </span>
+          X
+          </a>
+          <a href="mailto:example@email.com" class="btn">
+          <span class="icon">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Email" width="20" height="20" />
+          </span>
+          Email
+          </a>
+       </div>
+      </section>`;
     } else if (page === 'about') {
       content.innerHTML = `
-        <section class="home-intro" data-aos="fade-right">
+      <section class="home-intro" data-aos="fade-right">
           <h1>About Me</h1>
           <p>Hello! I’m Emir, a passionate developer focused on game and web development. 🚀</p>
-        </section>
-      `;
+      </section>`;
     } else if (page === 'projects') {
       content.innerHTML = `
-        <section data-aos="fade-right" class="projects-section">
-      <h1>Projects</h1>
-      <p class="projects-subtitle">Projects I've worked on</p>
-      <div class="projects-grid">
+      <section data-aos="fade-right" class="projects-section">
+        <h1>Projects</h1>
+         <p class="projects-subtitle">Projects I've worked on</p>
+        <div class="projects-grid">
         <div class="project-card" data-aos="zoom-in">
           <iframe src="https://www.youtube.com" title="Fire Soldier" frameborder="0" allowfullscreen></iframe>
           <h3>Fire Soldier</h3>
@@ -63,12 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>Experiments</span>
           </div>
           <a href="https://youtu.be/" target="_blank" class="btn-watch">Watch Video</a>
-        </div>
-        <!-- Diğer projeler de benzer şekilde eklenir -->
-      </div>
-    </section>
-      `;
-    
+         </div>
+         <!-- Diğer projeler de benzer şekilde eklenir -->
+         </div>
+      </section>`;
+      
       const projectCards = document.querySelectorAll('.project-card');
       projectCards.forEach(card => {
         card.addEventListener('click', () => {
